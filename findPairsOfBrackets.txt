@@ -1,0 +1,41 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        findPairsOfBrackets();
+    }
+
+    public static void findPairsOfBrackets() {
+        String givenString = "({}{}({[]})({[]})({[]}))";
+        int stringLength = givenString.length();
+
+        System.out.println("Starting string: \t" + givenString);
+
+        for (int i = 0; i < stringLength - 1; i++) {
+            if (givenString.substring(i, i + 2).equals("()")
+                    || givenString.substring(i, i + 2).equals("{}")
+                    || givenString.substring(i, i + 2).equals("[]")) {
+
+                System.out.println("Match found for the " + (i + 1) + " character! Let's remove following pair "
+                        + givenString.substring(i, i + 2));
+
+                givenString = givenString.substring(0, i) + givenString.substring(i + 2);
+                System.out.println("Updated string: \t\t" + givenString);
+                stringLength = givenString.length();
+                
+                i = -1;
+            }
+        }
+        printResult(givenString);
+    }
+
+    public static void printResult(String givenString) {
+        if (givenString.equals("")) {
+            System.out.println("\nRESULT: \t String Simbols \"(){}[]\"  all pairs are matched and nested correctly! All is Correct!");
+        } else {
+            System.out.println("\nRESULT: \t This simbols in string is't mached: " + givenString);
+        }
+    }
+}
